@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Complaint - SmartCity Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>SmartCity</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="citizen-dashboard.html" class="nav-item">Dashboard</a>
+            <a href="submit-complaint.html" class="nav-item active">Submit Complaint</a>
+            <a href="my-complaints.html" class="nav-item">My Complaints</a>
+            <a href="profile.html" class="nav-item">Profile</a>
+            <a href="#" class="nav-item" onclick="logout()">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <div id="header-user-name" style="font-weight: 600;">Hello, Citizen</div>
+        </header>
+
+        <div class="content-area">
+            <h2 class="mb-3">Submit a New Complaint</h2>
+
+            <div class="card" style="max-width: 800px;">
+                <form id="complaint-form">
+                    <div class="form-group">
+                        <label for="title">Complaint Title *</label>
+                        <input type="text" id="title" class="form-control" required placeholder="Brief title of the issue">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" class="form-control" required>
+                            <option value="">Select Category</option>
+                            <option value="Road Damage">Road Damage</option>
+                            <option value="Garbage/Waste">Garbage/Waste</option>
+                            <option value="Street Light">Street Light</option>
+                            <option value="Water Leakage">Water Leakage</option>
+                            <option value="Drainage">Drainage</option>
+                            <option value="Traffic Signal">Traffic Signal</option>
+                            <option value="Public Park">Public Park</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <textarea id="description" class="form-control" rows="5" required placeholder="Describe the problem in detail..."></textarea>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="location">Location / Landmark *</label>
+                            <input type="text" id="location" class="form-control" required placeholder="E.g., Main Street near Park">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="date">Date of Incident *</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Photo Evidence (Optional)</label>
+                        <input type="file" id="image" class="form-control" accept="image/*">
+                        <small style="color: var(--text-muted);">For prototype, file upload is visual only.</small>
+                    </div>
+
+                    <div class="flex gap-1 mt-2">
+                        <button type="submit" class="btn btn-primary">Submit Complaint</button>
+                        <button type="reset" class="btn btn-outline">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/citizen.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth('citizen');
+            // Set today's date as default
+            document.getElementById('date').valueAsDate = new Date();
+            
+            document.getElementById('complaint-form').addEventListener('submit', handleComplaintSubmission);
+        });
+    </script>
+</body>
+</html>

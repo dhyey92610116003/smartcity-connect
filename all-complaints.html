@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Complaints - SmartCity Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>SmartCity Admin</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html" class="nav-item">Dashboard</a>
+            <a href="all-complaints.html" class="nav-item active">All Complaints</a>
+            <a href="profile.html" class="nav-item">Profile</a>
+            <a href="#" class="nav-item" onclick="logout()">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <div id="header-user-name" style="font-weight: 600;">Hello, Admin</div>
+        </header>
+
+        <div class="content-area">
+            <h2 class="mb-3">Manage All Complaints</h2>
+
+            <div class="card">
+                <div class="filters-bar">
+                    <input type="text" id="search-input" placeholder="Search by ID, Title, Location...">
+                    <select id="status-filter">
+                        <option value="All">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Under Review">Under Review</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                    <select id="category-filter">
+                        <option value="All">All Categories</option>
+                        <option value="Road Damage">Road Damage</option>
+                        <option value="Garbage/Waste">Garbage/Waste</option>
+                        <option value="Street Light">Street Light</option>
+                        <option value="Water Leakage">Water Leakage</option>
+                        <option value="Drainage">Drainage</option>
+                        <option value="Traffic Signal">Traffic Signal</option>
+                        <option value="Public Park">Public Park</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Location</th>
+                                <th>Date</th>
+                                <th>Status Update</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complaints-table-body">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', renderAllComplaints);
+    </script>
+</body>
+</html>
